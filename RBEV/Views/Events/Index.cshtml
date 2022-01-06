@@ -1,0 +1,109 @@
+﻿@model RBEV.Models.RacquetballViewModels.EventIndexView
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Racquetball Events</h1>
+
+<p>
+
+    <a class="btn btn-primary" asp-controller="Home" asp-action="location"> Find Events Close to You: View our Map</a>
+    <a class="btn btn-outline-primary" asp-action="Create">Add New Event</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Posted Date
+            </th>
+            <th>
+                Club
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Events)
+        {
+            string selectedRow = "";
+            if (item.RacquetballEventID == (int?)ViewData["EventID"])
+            {
+                selectedRow = "table-success";
+                if (item.RacquetballEventID == (int?)ViewData["EventID"])
+                {
+                    selectedRow = "success";
+                }
+            }
+        <tr class="@selectedRow">
+            <td>
+                @Html.DisplayFor(modelItem => item.EventName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Club.Name)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.RacquetballEventID" class="btn btn-success">More Details</a>
+
+            @if (User.IsInRole("SuperAdmin") || User.IsInRole("Moderator"))
+            {
+            <td>
+
+                    @Html.ActionLink("View Registered Members", "Index", new { eventID = item.RacquetballEventID })
+
+
+            </td>
+                <td>
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.RacquetballEventID">Edit</a> |
+                    <a class="btn btn-primary" asp-action="Delete" asp-route-id="@item.RacquetballEventID">Delete</a>
+                </td>
+            }
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+@if (Model.Registrations != null)
+{
+    <h3>
+        Members Registered for Selected Event
+    </h3>
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Division</th>
+        </tr>
+        @foreach (var item in Model.Registrations)
+        {
+            <tr>
+                <td>
+                    @item.Member.FullName
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Division)
+                </td>
+            </tr>
+        }
+    </table>
+}

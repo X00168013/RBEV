@@ -1,0 +1,69 @@
+﻿@model IEnumerable<RBEV.Models.Club>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Local Racquetball Clubs</h1>
+
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find Your Club: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-outline-success" /> |
+            <a class="btn btn-primary" asp-action="Index">Back to Full List</a>
+            <a class="btn btn-outline-primary" asp-action="Create">Add New Club</a>
+        </p>
+    </div>
+</form>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Name</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["CountySortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">County</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["ProvinceSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Province</a>
+            </th>
+
+            <th>
+                Number of Courts
+            </th>
+            <th>
+                Event Coordinator
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.County)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Province)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberofCourts)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Adminstrator.FullName)
+                </td>
+                <td>
+                    <a class="btn btn-success" asp-action="Details" asp-route-id="@item.ClubID">Details</a> |
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.ClubID">Edit</a> |
+                    <a class="btn btn-primary" asp-action="Delete" asp-route-id="@item.ClubID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

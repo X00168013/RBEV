@@ -1,0 +1,55 @@
+﻿@model RBEV.Models.Club
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Club Details</h1>
+
+<div>
+    <h4>Club</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.County)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.County)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Province)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Province)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NumberofCourts)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NumberofCourts)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Adminstrator)
+        </dt>
+        <dd class="col-sm-10">
+            <a asp-controller="EventCoordinators" asp-action="Details" asp-route-id="@Model.EventCoordinatorID">
+                @Html.DisplayFor(model => model.Adminstrator.FullName) </a>
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RowVersion)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RowVersion)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@Model.ClubID">Edit</a> |
+    <a class="btn btn-primary" asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,41 @@
+﻿@model RBEV.Models.Registration
+
+@{
+    ViewData["Title"] = "Create";
+}
+<h2>Event Registration</h2>
+
+
+<p><ol>1. Select Event</ol><ol>2. Select Member you wish to register for this event</ol></p>
+ 
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="EventID" class="control-label">Select Event</label>
+                <select asp-for="EventID" class="form-control" asp-items="ViewBag.EventID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="MemberID" class="control-label">Select Member</label>
+                <select asp-for="MemberID" class="form-control" asp-items="ViewBag.MemberID"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Division" class="control-label">Select Division (if applicable)</label>
+                <select asp-for="Division" asp-items="Html.GetEnumSelectList<RBEV.Enums.Division>()" class="form-control"></select>
+                <span asp-validation-for="Division" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-success" />            <a class="btn btn-outline-primary" asp-action="Index">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

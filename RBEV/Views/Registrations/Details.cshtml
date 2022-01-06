@@ -1,0 +1,36 @@
+﻿@model RBEV.Models.Registration
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Registration</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Division)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Division)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Event)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Event.RacquetballEventID)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Member)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Member.Address)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@Model.RegistrationID">Edit</a> |
+    <a class="btn btn-primary" asp-action="Index">Back to List</a>
+</div>

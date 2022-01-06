@@ -1,0 +1,61 @@
+﻿@model RBEV.Models.Club
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete Club</h1>
+
+<p class="text-danger">@ViewData["ConcurrencyErrorMessage"]</p>
+<h3>Please Review Selected Club</h3>
+<div>
+    <h4>Club</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.County)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.County)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Province)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Province)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NumberofCourts)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NumberofCourts)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Adminstrator)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Adminstrator.Address)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RowVersion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RowVersion)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ClubID" />
+        <input type="hidden" asp-for="RowVersion" />
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a class="btn btn-primary" asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>

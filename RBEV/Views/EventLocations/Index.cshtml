@@ -1,0 +1,66 @@
+﻿@model IEnumerable<RBEV.Models.EventLocation>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Event Locations</h1>
+@if (User.IsInRole("SuperAdmin") || User.IsInRole("Moderator"))
+{
+    <p>
+        <a class="btn btn-outline-primary" asp-action="Create">Create New</a>
+    </p>
+}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Event)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Latitude)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Longitude)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Event.EventName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Latitude)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Longitude)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                </tr>
+                @if (User.IsInRole("SuperAdmin") || User.IsInRole("Moderator"))
+                {
+                    <tr>
+                        <td>
+                            <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.LocationID">Edit</a> |
+                            <a class="btn btn-primary" asp-action="Delete" asp-route-id="@item.LocationID">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>

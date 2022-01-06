@@ -1,0 +1,50 @@
+﻿@model RBEV.Models.Club
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Add New Club</h1>
+
+<h4>Club</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="County" class="control-label"></label>
+                <input asp-for="County" class="form-control" />
+                <span asp-validation-for="County" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Province" class="control-label"></label>
+                <select asp-for="Province" asp-items="Html.GetEnumSelectList<RBEV.Enums.Province>()" class="form-control"></select>
+                <span asp-validation-for="Province" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberofCourts" class="control-label"></label>
+                <input asp-for="NumberofCourts" class="form-control" />
+                <span asp-validation-for="NumberofCourts" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventCoordinatorID" class="control-label"> Event Coordinator/Club Admin</label>
+                <select asp-for="EventCoordinatorID" class="form-control" asp-items="ViewBag.EventCoordinatorID"></select>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-success" />            <a class="btn btn-outline-primary" asp-action="Index">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

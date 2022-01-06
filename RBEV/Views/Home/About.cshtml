@@ -1,0 +1,44 @@
+﻿@model IEnumerable<RBEV.Models.RacquetballViewModels.GenderBreakdown>
+
+@{
+    ViewData["Title"] = "Membership Gender Breakdown";
+}
+
+<h2>RBALL EVENTS</h2>
+<p>RBALL Events caters for Racquetball Clubs all over Ireland looking to advertise their events and also to recieve registerations. We make note of all clubs accross Ireland alongside Event Corodinators and members.</p>
+
+
+<h2> How we Work</h2>
+<ol>1. Create An Account - Add Yourself as a Member</ol>
+<img src="~/Images/member1.png" style="width:8%;" />
+<ol>2. Find an Event</ol>
+<img src="~/Images/event.png" style="width:8%;" />
+<ol>3. Register</ol>
+<img src="~/Images/register.png" style="width:8%;" />
+
+
+<h2>Our Membership</h2>
+<p> We continue to grow the sport of racquetball and support the Racquetball Association of Ireland in this endeavor. Below you will find a breakdown of our registered members and gender breakdown.</p>
+
+<table>
+    <tr>
+        <th>
+            Gender
+        </th>
+        <th>
+            Member
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @item.MemberCount
+            </td>
+        </tr>
+    }
+</table>
