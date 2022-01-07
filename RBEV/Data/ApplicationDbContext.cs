@@ -10,6 +10,13 @@ namespace RBEV.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        //private const string connectionString = "Server=(localdb)\\mssqllocaldb;Database=aspnet-RBEV-AA7EBA5F-0654-43BC-A681-CA582EFA1468;Trusted_Connection=True;MultipleActiveResultSets=true";
+        private const string connectionString = "Server=tcp:rbevdbserver.database.windows.net,1433;Initial Catalog=RBEV_db;Persist Security Info=False;User ID=adminserver;Password=Majella1*;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30";
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(connectionString);
+        }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
