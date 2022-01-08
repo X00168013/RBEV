@@ -15,12 +15,12 @@ using System.Threading.Tasks;
 namespace RBEV.Controllers
 {
     [AllowAnonymous]
-    public class EventController : Controller
+    public class HomeController : Controller
     {
-        private readonly ILogger<EventController> _logger;
+        private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _context;
 
-        public EventController(ILogger<EventController> logger, ApplicationDbContext context)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _logger = logger;
             _context = context;
@@ -58,7 +58,9 @@ namespace RBEV.Controllers
         public IActionResult Location()
         {
             string markers = "[";
-            string conString = "Server=tcp:rbevdbserver.database.windows.net,1433;Initial Catalog=RBEV_db;Persist Security Info=False;User ID=adminserver;Password=Majella1*;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30";
+            //First string for Azure
+            //string conString = "Server=tcp:rbevdbserver.database.windows.net,1433;Initial Catalog=RBEV_db;Persist Security Info=False;User ID=adminserver;Password=Majella1*;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30";
+            string conString = "Server=(localdb)\\mssqllocaldb;Database=aspnet-RBEV-AA7EBA5F-0654-43BC-A681-CA582EFA1468;Trusted_Connection=True;MultipleActiveResultSets=true";
             SqlCommand cmd = new SqlCommand("SELECT * FROM EventLocation");
             using (SqlConnection con = new SqlConnection(conString))
             {
